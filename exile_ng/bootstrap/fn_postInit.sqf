@@ -1,0 +1,3 @@
+call ExileNG_system_process_postInit;
+
+true
