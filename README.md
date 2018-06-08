@@ -16,7 +16,7 @@ I wanted to create a live scoreboard for Altis Life a few years back but i never
 ["Land_Billboard_F", [8066.36, 9722.94, 31.9463], [1, -4.37114e-008, 0], [0, 0, 1], true],
 ["Land_Billboard_F", [3628.18, 3212.83, 4.30319], [-0.200219, -0.979751, 0], [0, 0, 1], true],
 ```
-- Copy the coordinates from the placed billboards and update the settings you put under `##arma_3_server##/mpmissions/##exile_mission##/config.cpp`
+- Copy the coordinates from the placed billboards and update the settings you put under `##arma_3_server##/mpmissions/##exile_mission##/config.cpp` and make sure that the last part of each coordinate is set to 0. Exile exports the coords in ASL (At sea level) fashion and my script is trying to locate them in a ATL (At terrain level).
 
 ## TODOs
 I would love to utilize the try catch blocks properly as they are designed but i wanted to get it live so people can enjoy. I will release an update as i go and than it will be a matter of copy paste the new files to get it going
