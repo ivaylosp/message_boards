@@ -7,7 +7,7 @@ I wanted to create a live scoreboard for Altis Life a few years back but i never
  - When you see `##exile_mission##` that refers to the folder name of your mission
 
 ## Installation Fresh
-- Copy `exile_ng` folder into ##arma_3_server##/@ExileServer/addons/
+- Convert the `exile_ng` into a PBO using PBO manager and copy the PBO into into ##arma_3_server##/@ExileServer/addons/
 - Open `exile.ini` file and copy all the text and paste it right at the bottom of your `##arma3server##/@ExileServer/extDB/sql_custom_v2/exile.ini`
 - Copy the textures folder to your `##arma_3_server##/mpmissions/##exile_mission##/` if you already have a textures folder than just copy the contents of my textures folder into yours
 - Open clientside_code/config.cpp and copy all the text and paste it at the bottom of your `##arma_3_server##/mpmissions/##exile_mission##/config.cpp`

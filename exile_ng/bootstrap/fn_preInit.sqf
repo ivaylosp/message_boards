@@ -36,7 +36,7 @@ forEach
   ['ExileNG_system_messageBoards_getTopTenDeaths', 'exile_ng\code\ExileNG_system_messageBoards_getTopTenDeaths.sqf', false],
   ['ExileNG_system_messageBoards_getTopTenKds', 'exile_ng\code\ExileNG_system_messageBoards_getTopTenKds.sqf', false],
   ['ExileNG_system_messageBoards_getTopTenKills', 'exile_ng\code\ExileNG_system_messageBoards_getTopTenKills.sqf', false],
-  ['ExileNG_system_messageBoards_getTopTenScores', 'exile_ng\code\ExileNG_system_messageBoards_getTopTenScores.sqf', false],
+  ['ExileNG_system_messageBoards_getTopTenScores', 'exile_ng\code\ExileNG_system_messageBoards_getTopTenScores.sqf', false]
 ];
 
 call ExileNG_system_process_preInit;
