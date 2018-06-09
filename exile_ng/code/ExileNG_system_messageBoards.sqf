@@ -1,12 +1,17 @@
-private ["_messageBillboards","_exileNGGetTopScorersData","_playerName","_playerScore","_billboard","_pointer_row","_pointer_x_start","_pointer_y_start","_pointer_x_offset","_pointer_y_offset","_pointer_x","_pointer_y","_pointer_z","_max_rows","_max_columns","_pointer","_billboard_characters_placeholders","_billboard_characters","_billboard_character", "_data"];
+private ["_messageBillboards","_exileNGGetTopScorersData","_playerName","_playerScore","_billboard","_pointer_row","_pointer_x_start","_pointer_y_start","_pointer_x_offset","_pointer_y_offset","_pointer_x","_pointer_y","_pointer_z","_max_rows","_max_columns","_pointer","_billboard_characters_placeholders","_billboard_characters","_billboard_character", "_data", "_randomMessageType", "_messageTypeFunction"];
 
 try
 {
+    private _possibleMessageTypes = ["getTopTenDeaths","getTopTenKills","getTopTenKds","getTopTenScores","getTopTenMoney"];
 	_messageBillboards = getArray(missionConfigFile >> "CfgExileNGMessageBoards" >> "positions");
+    _randomMessageType = selectRandom _possibleMessageTypes;
+    _messageTypeFunction = call compile format["ExileNG_system_messageBoards_%1", _randomMessageType];
 
-    private _possibleMessageTypes = ["getTopTenDeaths","getTopTenKills","getTopTenKds","getTopTenScores"];
+    if (count _messageBillboards == 0) then {
+        throw "CfgExileNGMessageBoards is missing from the config.cpp within your mission file";
+    };
 
-	_data = call call compile format["ExileNG_system_messageBoards_%1", selectRandom _possibleMessageTypes];
+	_data = call call compile format["ExileNG_system_messageBoards_%1", _randomMessageType];
 	_data = toUpper _data;
 	_data = toArray(_data);
 
@@ -50,7 +55,6 @@ try
 				_pos = _billboard modelToWorldWorld [_pointer_x, _pointer_z, _pointer_y];
 				_billboard_character setPosWorld _pos;
 				_billboard_character setObjectTextureGlobal [0,"textures\messageboard\space.paa"];
-
 				_billboard_characters pushBack _billboard_character;
 			};
 
@@ -69,7 +73,6 @@ try
 			// 32 - space 9 - tab 13 - carriage return 10 - newline
 			if ([32,9,13,10] find _x > -1) then
 			{
-				systemChat format["Current character is : %1", _x];
 				_billboard_character = "space";
 			} else {
 				_billboard_character = toString [_x];
@@ -78,9 +81,9 @@ try
             _billboard_character = _x;
 
 			switch true do {
+			    case (_x in [49,50,51,52,53,54,55,56,57,48,81,87,69,82,84,89,85,73,79,80,65,83,68,70,71,72,74,75,76,90,88,67,86,66,78,77]): { _billboard_character = toString [_x]; }; //1234567890QWERTYUIOPASDFGHJKLZXCVBNM
                 case (_x in [91,92,93,95,47,46,45,33]): { _billboard_character = _x; }; // 95-_ 92-\ 93-] 91-[ 47-/ 46-. 45-- 33-!
-                case (_x in [32,9,13,10]): { _billboard_character = "space"; };
-                default { _billboard_character = toString [_x]; };
+                default { _billboard_character = "space"; };
             };
 
 			(_billboard_characters_placeholders select _foreachindex) setObjectTextureGlobal [0, format["textures\messageboard\%1.paa", _billboard_character]];
@@ -89,7 +92,7 @@ try
 }
 catch
 {
-
+    format["ERROR : ExileNG [MESSAGE BOARDS] - %1", toString _exception] call ExileServer_util_log;
 };
 
 true
