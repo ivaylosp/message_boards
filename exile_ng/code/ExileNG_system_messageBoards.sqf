@@ -70,17 +70,8 @@ try
         } forEach _billboard_characters_placeholders;
 
 		{
-			// 32 - space 9 - tab 13 - carriage return 10 - newline
-			if ([32,9,13,10] find _x > -1) then
-			{
-				_billboard_character = "space";
-			} else {
-				_billboard_character = toString [_x];
-			};
-
-            _billboard_character = _x;
-
 			switch true do {
+			    case (_x in [1063,1064,1045,1056,1058,1066,1059,1048,1054,1055,1040,1057,1044,1060,1043,1061,1049,1050,1051,1100,1047,1046,1062,1042,1041,1053,1052,1070,1065,1071]): { _billboard_character = _x; }; //ЧШЕРТЪУИОПАСДФГХЙКЛьЗЖЦВБНМЮЯ
 			    case (_x in [49,50,51,52,53,54,55,56,57,48,81,87,69,82,84,89,85,73,79,80,65,83,68,70,71,72,74,75,76,90,88,67,86,66,78,77]): { _billboard_character = toString [_x]; }; //1234567890QWERTYUIOPASDFGHJKLZXCVBNM
                 case (_x in [91,92,93,95,47,46,45,33]): { _billboard_character = _x; }; // 95-_ 92-\ 93-] 91-[ 47-/ 46-. 45-- 33-!
                 default { _billboard_character = "space"; };
