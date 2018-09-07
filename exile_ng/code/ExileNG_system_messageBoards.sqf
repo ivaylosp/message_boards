@@ -11,7 +11,7 @@ try
         throw "CfgExileNGMessageBoards is missing from the config.cpp within your mission file";
     };
 
-	_data = call call compile format["ExileNG_system_messageBoards_%1", _randomMessageType];
+	_data = call compile format["ExileNG_system_messageBoards_%1", _randomMessageType];
 	_data = toUpper _data;
 	_data = toArray(_data);
 
